@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download Processed File</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center">Download Your Processed File</h1>
+
+    <div class="card mb-4">
+      <div class="card-header">Changes Summary</div>
+      <div class="card-body">
+        <p><strong>Duplicates Removed:</strong> {{ changes.duplicates_removed }}</p>
+        <p><strong>Missing Values Filled:</strong></p>
+        <ul class="list-group">
+          {% for col, value in changes.missing_values_filled.items() %}
+            <li class="list-group-item">{{ col }}: {{ value }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="{{ url_for('download_file', file_path=file_path) }}" class="btn btn-primary btn-lg">
+        Download File
+      </a>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
